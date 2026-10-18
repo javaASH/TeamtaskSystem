@@ -2,7 +2,7 @@ function notFound(req, res) {
     res.status(404).json({ message: `Route not found: ${req.method} ${req.originalUrl}` });
 }
 
-// Express 5 forwards rejected async handlers here automatically.
+// forwards rejected handlers automatically byt the validationError
 function errorHandler(err, req, res, next) {
     if (err.name === "ValidationError")
         return res.status(400).json({
