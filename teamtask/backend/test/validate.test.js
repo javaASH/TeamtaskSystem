@@ -2,8 +2,14 @@ const test = require("node:test");
 const assert = require("node:assert");
 const { validateRegister, validateTask, buildTaskFilter, escapeRegex } = require("../src/service/validate");
 
-const user = { _id: "64b000000000000000000001", role: "user" };
-const admin = { _id: "64b000000000000000000002", role: "admin" };
+const user = {
+    _id: "64b000000000000000000001",
+    role: "user"
+};
+const admin = {
+    _id: "64b000000000000000000002",
+    role: "admin"
+};
 
 test("register: rejects weak password and bad email, normalises email", () => {
     assert.ok(
