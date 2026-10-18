@@ -11,5 +11,15 @@ const nextConfig = {
     },
   },
 };
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://teamtasksystem.onrender.com/api/:path*",
+      },
+    ];
+  },
+};
 
 export default nextConfig;
