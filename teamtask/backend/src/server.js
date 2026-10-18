@@ -18,4 +18,14 @@ async function startServer()
     }
 
 }
+// last-resort logging so a stray error never dies silently
+process.on("unhandledRejection", (reason) => {
+    console.error("Unhandled promise rejection:", reason);
+});
+process.on("uncaughtException", (error) => {
+    console.error("Uncaught exception:", error);
+    // process state is unknown after this, so exit and let nodemon / the host restart it
+    process.exit(1);
+});
+
 startServer();
