@@ -1,5 +1,6 @@
 // Pure input validation. Every value from req.body / req.query is checked to be the
 // expected primitive type, which also blocks NoSQL operator injection ({ "$gt": "" }).
+// all Validation exist here to run on every value on req.body
 const mongoose = require("mongoose");
 const { STATUSES, PRIORITIES } = require("../modals/Task");
 
