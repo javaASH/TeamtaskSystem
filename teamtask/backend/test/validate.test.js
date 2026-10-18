@@ -24,9 +24,14 @@ test("register: rejects weak password and bad email, normalises email", () => {
         email: " Ann@X.com ",
         password: "secret123"
     });
-    assert.deepStrictEqual(errors, []);
-    assert.strictEqual(value.email, "ann@x.com");
-    assert.strictEqual(value.name, "Ann");
+    assert.deepStrictEqual(
+        errors, []);
+    assert.strictEqual(value.email,
+        "ann@x.com"
+    );
+    assert.strictEqual(
+        value.name, "Ann"
+    );
 });
 
 test("register/task: blocks NoSQL operator objects", () => {
