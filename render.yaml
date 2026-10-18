@@ -1,0 +1,23 @@
+# Render Blueprint: deploys the TeamTask backend (Express API).
+# Render dashboard → New → Blueprint → pick this repo. Fill in the variables marked sync: false.
+services:
+  - type: web
+    name: teamtask-api
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: teamtask/backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "24"
+      - key: SESSION_SECRET
+        generateValue: true # Render creates a long random secret
+      - key: MONGODB_URI
+        sync: false # paste your Atlas connection string in the dashboard
+      - key: FRONTEND_URL
+        sync: false # your deployed frontend URL, e.g. https://teamtask.vercel.app
