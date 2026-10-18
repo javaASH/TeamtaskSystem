@@ -15,7 +15,11 @@ async function listAuditLogs(req, res) {
     const page = Math.max(1, parseInt(req.query.page, 10) || 1);
     const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 50));
     const [logs, total] = await Promise.all([
-        AuditLog.find(filter).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit).populate("user", "name email"),
+        AuditLog.find(filter)
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .populate("user", "name email"),
         AuditLog.countDocuments(filter),
     ]);
     res.json({ logs, total, page, pages: Math.ceil(total / limit) || 1 });
