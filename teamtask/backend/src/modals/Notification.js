@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dateOnly = require("./dateOnly");
 
 const notificationSchema = new mongoose.Schema(
     {
@@ -10,5 +11,7 @@ const notificationSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+notificationSchema.set("toJSON", { transform: dateOnly });
 
 module.exports = mongoose.model("Notification", notificationSchema);

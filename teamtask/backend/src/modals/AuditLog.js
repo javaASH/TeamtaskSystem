@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dateOnly = require("./dateOnly");
 
 const auditLogSchema = new mongoose.Schema(
     {
@@ -10,5 +11,7 @@ const auditLogSchema = new mongoose.Schema(
     },
     { timestamps: { createdAt: true, updatedAt: false } }
 );
+
+auditLogSchema.set("toJSON", { transform: dateOnly });
 
 module.exports = mongoose.model("AuditLog", auditLogSchema);

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const dateOnly = require("./dateOnly");
 
 const ROLES = ["admin", "manager", "user"];
 
@@ -30,7 +31,7 @@ userSchema.set("toJSON", {
     transform: (doc, ret) => {
         delete ret.password;
         delete ret.__v;
-        return ret;
+        return dateOnly(doc, ret);
     },
 });
 
