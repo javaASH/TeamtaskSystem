@@ -12,8 +12,10 @@ const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 function validateRegister(body = {}) {
     const errors = [];
     const { name, email, password } = body;
-    if (!isStr(name) || !name.trim() || name.trim().length > 60) errors.push("name is required (max 60 chars)");
-    if (!isStr(email) || !EMAIL_RE.test(email.trim())) errors.push("a valid email is required");
+    if (!isStr(name) || !name.trim() || name.trim().length > 60)
+        errors.push("name is required (max 60 chars)");
+    if (!isStr(email) || !EMAIL_RE.test(email.trim()))
+        errors.push("a valid email is required");
     if (!isStr(password) || password.length < 8 || password.length > 72)
         errors.push("password must be 8-72 characters"); // bcrypt ignores bytes past 72
     else if (!/[A-Za-z]/.test(password) || !/\d/.test(password))
