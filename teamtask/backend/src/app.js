@@ -15,7 +15,11 @@ if (isProd) app.set("trust proxy", 1);
 
 app.use(helmet());
 app.use(cors({
-    origin :  ["https://teamtask-system.vercel.app", "http://localhost:3000"],
+    origin :   [
+  "https://teamtask-system.vercel.app",
+  "https://teamtask-system-ashishteam1.vercel.app",
+  "http://localhost:3000",
+],
     credentials: true
 }));
 app.use(express.json({ limit: "100kb" }));
