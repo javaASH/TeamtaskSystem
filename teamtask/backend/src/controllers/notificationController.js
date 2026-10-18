@@ -14,7 +14,7 @@ async function listNotifications(req, res) {
 
 async function markRead(req, res) {
     if (!isId(req.params.id)) return res.status(400).json({ message: "Invalid notification id" });
-    // scoped to the owner so users can't touch each other's notifications
+    // here is the thing so users cant' touch each other notification and work smoth
     const notification = await Notification.findOneAndUpdate(
         { _id: req.params.id, user: req.user._id },
         { read: true },
