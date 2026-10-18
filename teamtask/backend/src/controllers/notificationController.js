@@ -3,7 +3,8 @@ const { isId } = require("../service/validate");
 
 async function listNotifications(req, res) {
     const filter = { user: req.user._id };
-    if (req.query.unread === "true") filter.read = false;
+    if (req.query.unread === "true")
+        filter.read = false;
     const [notifications, unreadCount] = await Promise.all([
         Notification.find(filter).sort({ createdAt: -1 }).limit(50).populate("task", "title"),
         Notification.countDocuments({ user: req.user._id, read: false }),
